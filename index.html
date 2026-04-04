@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto BOA - Ingeniería CUR-Chontales</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- CDNs -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --navy: #00428A;
+            --gold: #F2B705;
+            --bg-light: #F9FAFB;
+        }
+        body { font-family: 'Montserrat', sans-serif; color: #374151; background-color: var(--bg-light); line-height: 1.8; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--navy); }
+        
+        .bg-navy { background-color: var(--navy); }
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+
+        /* Hero */
+        .hero-slider { height: 75vh; position: relative; }
+        .hero-slider img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { 
+            position: absolute; inset: 0; 
+            background: linear-gradient(to bottom, rgba(0, 66, 138, 0.85), rgba(0, 45, 94, 0.7)); 
+            z-index: 10; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Dashboard Image Style */
+        .dashboard-frame {
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid #e5e7eb;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .dashboard-frame img {
+            border-radius: 12px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
+            transition: all 0.3s ease;
+        }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.23); }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <header class="bg-white py-5 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="bg-navy p-2 rounded-lg mr-3">
+                    <i class="fas fa-chart-line text-gold text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black text-navy uppercase tracking-tighter block leading-none">Proyecto BOA</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Hotel Aries | CUR-Chontales</span>
+                </div>
+            </div>
+            <a href="https://wa.me/50588271227?text=Hola,%20estoy%20interesado%20en%20el%20Proyecto%20BOA" target="_blank" class="btn-whatsapp text-sm">
+                <i class="fab fa-whatsapp mr-2 text-lg"></i> CONTACTAR
+            </a>
+        </div>
+    </header>
+
+    <!-- Slider de Inicio -->
+    <section class="hero-slider">
+        <div class="swiper mainSwiper h-full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1541976590-7139414bc5c4?auto=format&fit=crop&w=1920&q=80"></div>
+                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1920&q=80"></div>
+            </div>
+        </div>
+        <div class="hero-overlay text-center text-white p-6">
+            <div class="max-w-4xl">
+                <h4 class="uppercase tracking-[0.3em] text-gold font-bold mb-4">UNAN-MANAGUA | CUR-Chontales</h4>
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">HospyAries (Hotel Aries) sistema Hotelero</h1>
+                <p class="text-xl md:text-2xl font-light opacity-90 max-w-2xl mx-auto">Modernización del registro hotelero para el Hotel Aries mediante ingeniería de software avanzada.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introducción Detallada -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-4xl font-bold mb-8 relative">
+                    Contexto del Proyecto
+                    <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    El proyecto **BOA (Bitácora de Operaciones de Alojamiento)** nace como una iniciativa del **Grupo 8 del VII Semestre de Ingeniería en Sistemas** en el Centro Universitario Regional de Chontales **“Cornelio Silva Argüello”**. 
+                </p>
+                <div class="info-card mb-8">
+                    <h3 class="text-2xl font-bold mb-4">El Problema Central</h3>
+                    <p class="italic text-gray-700">
+                        "El Hotel Aries actualmente depende de un registro manual en cuadernos. Esta práctica causa retrasos significativos, ya que para clientes recurrentes se deben volver a solicitar y escribir todos sus datos, generando ineficiencia y falta de control sobre la disponibilidad real de las habitaciones."
+                    </p>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-navy">Objetivos Técnicos</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <i class="fas fa-database text-gold text-2xl mb-4"></i>
+                        <h4 class="font-bold mb-2">Base de Datos Digital</h4>
+                        <p class="text-sm text-gray-500">Almacenamiento seguro de perfiles de huéspedes para evitar registros repetitivos.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <i class="fas fa-calendar-alt text-gold text-2xl mb-4"></i>
+                        <h4 class="font-bold mb-2">Control de Reservas</h4>
+                        <p class="text-sm text-gray-500">Visualización inmediata de habitaciones disponibles y ocupadas.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <i class="fas fa-file-invoice text-gold text-2xl mb-4"></i>
+                        <h4 class="font-bold mb-2">Generación de Reportes</h4>
+                        <p class="text-sm text-gray-500">Estadísticas precisas de ingresos y comportamiento del alojamiento.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <i class="fas fa-user-check text-gold text-2xl mb-4"></i>
+                        <h4 class="font-bold mb-2">Atención Agilizada</h4>
+                        <p class="text-sm text-gray-500">Mejora directa en la experiencia del cliente al reducir tiempos de espera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DEL DASHBOARD (PROTAGONISTA) -->
+    <section class="py-24 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Interfaz del Sistema BOA</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
+                Hemos diseñado un panel de control intuitivo que permite a la administración del hotel gestionar reservaciones, clientes y habitaciones desde una única plataforma digital.
+            </p>
+            
+            <div class="dashboard-frame" data-aos="zoom-in">
+                <!-- Imagen de un Dashboard de Gestión Hotelera Real -->
+                <img src="https://images.unsplash.com/photo-1551288049-bbdac8a28a1e?auto=format&fit=crop&w=1200&q=80" alt="Vista del Dashboard Sistema BOA">
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <div>
+                    <span class="text-4xl font-bold text-navy">100%</span>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Automatizado</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold text-navy">0</span>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Papel Usado</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold text-navy">RealTime</span>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Actualización</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold text-navy">Cloud</span>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Almacenamiento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información de Habitaciones y Gestión -->
+    <section class="py-24 container mx-auto px-6">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl font-bold mb-4">Gestión de Alojamiento</h2>
+            <div class="w-24 h-1 bg-gold mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
+                <h4 class="text-xl font-bold mb-4 text-navy">Unipersonal</h4>
+                <p class="text-sm text-gray-500 mb-4">Gestión individual para viajeros de negocios o académicos.</p>
+                <span class="text-gold font-bold">Estado: Monitoreado</span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
+                <h4 class="text-xl font-bold mb-4 text-navy">Matrimonial</h4>
+                <p class="text-sm text-gray-500 mb-4">Control de ocupación premium para parejas.</p>
+                <span class="text-gold font-bold">Estado: Monitoreado</span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
+                <h4 class="text-xl font-bold mb-4 text-navy">Doble Cama</h4>
+                <p class="text-sm text-gray-500 mb-4">Optimización de espacios compartidos.</p>
+                <span class="text-gold font-bold">Estado: Monitoreado</span>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
+                <h4 class="text-xl font-bold mb-4 text-navy">Triples</h4>
+                <p class="text-sm text-gray-500 mb-4">Gestión de grupos y familias.</p>
+                <span class="text-gold font-bold">Estado: Monitoreado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodología Técnica -->
+    <section class="py-24 bg-navy text-white">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold text-white mb-8">Proceso de Ingeniería</h2>
+                <p class="text-blue-200 mb-10 text-lg">
+                    El desarrollo del sistema BOA siguió rigurosos estándares académicos y metodologías ágiles para asegurar una entrega de calidad.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">1</div>
+                        <div><h5 class="font-bold">Análisis de Requerimientos</h5><p class="text-xs opacity-60">Entrevistas y encuestas al personal del hotel.</p></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">2</div>
+                        <div><h5 class="font-bold">Diseño UI/UX en Figma</h5><p class="text-xs opacity-60">Creación del prototipo "Wireframe Hotel Aries".</p></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">3</div>
+                        <div><h5 class="font-bold">Gestión con Trello</h5><p class="text-xs opacity-60">Control de hitos bajo el grupo BOA-VII.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl text-navy">
+                <h4 class="text-2xl font-bold mb-6">Referencias Académicas</h4>
+                <p class="text-sm text-gray-600 italic mb-6">
+                    "Toda la documentación técnica y el sustento teórico de este sistema ha sido estructurado siguiendo las normas **APA 7**, garantizando el rigor científico requerido por la UNAN-MANAGUA."
+                </p>
+                <div class="flex items-center text-xs font-bold uppercase tracking-widest text-gold">
+                    <i class="fas fa-graduation-cap mr-2"></i> VII Semestre - Ingeniería en Sistemas
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h4 class="text-2xl font-bold text-gold mb-2">CUR-Chontales “Cornelio Silva Argüello”</h4>
+            <p class="text-gray-400 mb-8 max-w-lg mx-auto">Proyecto de innovación para la modernización de la gestión hotelera en Chontales, Nicaragua.</p>
+            <div class="flex justify-center space-x-6 mb-12">
+                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/50588271227" class="text-2xl hover:text-gold transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="text-[10px] text-gray-600 uppercase tracking-[0.3em] border-t border-gray-800 pt-10">
+                © 2026 PROYECTO BOA | INGENIERÍA EN SISTEMAS | UNAN-MANAGUA
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mainSwiper", {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            effect: "fade",
+            speed: 1500
+        });
+    </script>
+</body>
+</html>
