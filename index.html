@@ -1,286 +1,511 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto BOA - Ingeniería CUR-Chontales</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    
-    <!-- CDNs -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>HospyAries | Gestión Hotelera Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- CDNs para Galería y Sliders -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F6B6B', // Verde Oscuro HospyAries
+                        secondary: '#1A8C8C', // Verde Medio
+                        accent: '#6BB5A8', // Verde Claro
+                        dark: '#0F172A',
+                        light: '#F2F2F2' // Gris Fondo
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --navy: #00428A;
-            --gold: #F2B705;
-            --bg-light: #F9FAFB;
-        }
-        body { font-family: 'Montserrat', sans-serif; color: #374151; background-color: var(--bg-light); line-height: 1.8; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--navy); }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
         
-        .bg-navy { background-color: var(--navy); }
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-
-        /* Hero */
-        .hero-slider { height: 75vh; position: relative; }
-        .hero-slider img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { 
-            position: absolute; inset: 0; 
-            background: linear-gradient(to bottom, rgba(0, 66, 138, 0.85), rgba(0, 45, 94, 0.7)); 
-            z-index: 10; display: flex; align-items: center; justify-content: center;
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
-        /* Dashboard Image Style */
-        .dashboard-frame {
-            background: white;
-            padding: 10px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 1px solid #e5e7eb;
-            max-width: 1000px;
-            margin: 0 auto;
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .dashboard-frame img {
-            border-radius: 12px;
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
-            transition: all 0.3s ease;
-        }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.23); }
-
-        .info-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            border-left: 5px solid var(--gold);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-primary selection:text-white overflow-x-hidden">
 
-    <!-- Navegación -->
-    <header class="bg-white py-5 shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="bg-navy p-2 rounded-lg mr-3">
-                    <i class="fas fa-chart-line text-gold text-xl"></i>
+    <!-- SECCIÓN 1: Navegación -->
+    <header class="fixed w-full glass-effect shadow-sm z-50 transition-all duration-500 transform translate-y-0" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 group cursor-pointer">
+                    <img src="imagenes/Screenshot 2026-04-07 135810.png" alt="Logo" class="w-8 h-8 rounded-lg group-hover:rotate-12 transition-transform duration-300">
+                    <span class="font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors duration-300 italic">HospyAries</span>
                 </div>
-                <div>
-                    <span class="text-xl font-black text-navy uppercase tracking-tighter block leading-none">Proyecto BOA</span>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Hotel Aries | CUR-Chontales</span>
+                <nav class="hidden md:flex space-x-8 text-[10px] uppercase tracking-widest font-bold">
+                    <a href="#problema" class="relative text-gray-600 hover:text-primary transition-colors group">
+                        El Problema
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#solucion" class="relative text-gray-600 hover:text-primary transition-colors group">
+                        Beneficios
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#equipo" class="relative text-gray-600 hover:text-primary transition-colors group">
+                        Equipo
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </nav>
+                <div class="flex items-center">
+                    <a href="https://wa.me/50588271227" target="_blank" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-secondary hover:shadow-lg hover:-translate-y-0.5 transform transition-all duration-300 text-[10px] uppercase tracking-widest">
+                        Únanse a la Beta
+                    </a>
                 </div>
             </div>
-            <a href="https://wa.me/50588271227?text=Hola,%20estoy%20interesado%20en%20el%20Proyecto%20BOA" target="_blank" class="btn-whatsapp text-sm">
-                <i class="fab fa-whatsapp mr-2 text-lg"></i> CONTACTAR
-            </a>
         </div>
     </header>
 
-    <!-- Slider de Inicio -->
-    <section class="hero-slider">
-        <div class="swiper mainSwiper h-full">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"></div>
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1541976590-7139414bc5c4?auto=format&fit=crop&w=1920&q=80"></div>
-                <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1920&q=80"></div>
-            </div>
-        </div>
-        <div class="hero-overlay text-center text-white p-6">
-            <div class="max-w-4xl">
-                <h4 class="uppercase tracking-[0.3em] text-gold font-bold mb-4">UNAN-MANAGUA | CUR-Chontales</h4>
-                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">HospyAries (Hotel Aries) sistema Hotelero</h1>
-                <p class="text-xl md:text-2xl font-light opacity-90 max-w-2xl mx-auto">Modernización del registro hotelero para el Hotel Aries mediante ingeniería de software avanzada.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Introducción Detallada -->
-    <section class="py-24 container mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <!-- NOTA EDUCATIVA UX/UI (Del Prof) -->
+    <div class="fixed bottom-4 right-4 z-50 max-w-sm bg-white p-4 rounded-xl shadow-2xl border-l-4 border-secondary" id="ux-toast">
+        <div class="flex items-start gap-3">
+            <i data-lucide="lightbulb" class="text-secondary w-6 h-6 flex-shrink-0 mt-1"></i>
             <div>
-                <h2 class="text-4xl font-bold mb-8 relative">
-                    Contexto del Proyecto
-                    <span class="absolute bottom-0 left-0 w-20 h-1 bg-gold"></span>
-                </h2>
-                <p class="text-lg text-gray-600 mb-8">
-                    El proyecto **BOA (Bitácora de Operaciones de Alojamiento)** nace como una iniciativa del **Grupo 8 del VII Semestre de Ingeniería en Sistemas** en el Centro Universitario Regional de Chontales **“Cornelio Silva Argüello”**. 
-                </p>
-                <div class="info-card mb-8">
-                    <h3 class="text-2xl font-bold mb-4">El Problema Central</h3>
-                    <p class="italic text-gray-700">
-                        "El Hotel Aries actualmente depende de un registro manual en cuadernos. Esta práctica causa retrasos significativos, ya que para clientes recurrentes se deben volver a solicitar y escribir todos sus datos, generando ineficiencia y falta de control sobre la disponibilidad real de las habitaciones."
+                <h4 class="font-bold text-sm text-dark">💡 Equipo: Nota sobre UX/UI</h4>
+                <p class="text-xs text-gray-600 mt-1">HospyAries usa <strong>scroll reveals</strong> para guiar al administrador por el flujo de digitalización del Hotel 2 Aries.</p>
+                <button onclick="document.getElementById('ux-toast').style.display='none'" class="text-xs text-gray-400 hover:text-gray-800 mt-2 underline text-left">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: Hero Section -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left z-10 animate-on-scroll">
+                    <div class="inline-block bg-accent/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold mb-6 tracking-widest uppercase border border-accent/20">
+                        💡 Proyecto de Ingeniería | BOA
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark leading-tight mb-6 tracking-tight">
+                        De cuadernos físicos a la <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">gestión digital inteligente.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 font-light">
+                        Digitaliza el Hotel 2 Aries con <strong>HospyAries</strong>. Centraliza tus 25 habitaciones, clientes y ventas en una PWA híbrida bajo Supabase Cloud.
                     </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/50588271227" class="group bg-primary text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-secondary transition-all duration-300 shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2 relative overflow-hidden">
+                            <i data-lucide="rocket" class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                            Solicitar Demo
+                        </a>
+                        <p class="text-sm text-gray-500 mt-3 sm:mt-0 sm:self-center italic font-medium">
+                            👉 No requiere instalación de la App Store.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="space-y-6">
-                <h3 class="text-2xl font-bold text-navy">Objetivos Técnicos</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-database text-gold text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">Base de Datos Digital</h4>
-                        <p class="text-sm text-gray-500">Almacenamiento seguro de perfiles de huéspedes para evitar registros repetitivos.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-calendar-alt text-gold text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">Control de Reservas</h4>
-                        <p class="text-sm text-gray-500">Visualización inmediata de habitaciones disponibles y ocupadas.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-file-invoice text-gold text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">Generación de Reportes</h4>
-                        <p class="text-sm text-gray-500">Estadísticas precisas de ingresos y comportamiento del alojamiento.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <i class="fas fa-user-check text-gold text-2xl mb-4"></i>
-                        <h4 class="font-bold mb-2">Atención Agilizada</h4>
-                        <p class="text-sm text-gray-500">Mejora directa en la experiencia del cliente al reducir tiempos de espera.</p>
+                <div class="relative mx-auto w-full max-w-md lg:max-w-none animate-on-scroll delay-200">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                    
+                    <!-- Swiper Gallery -->
+                    <div class="swiper dashboard-swiper rounded-[2.5rem] shadow-2xl border-[8px] border-dark hover:border-primary transition-colors duration-500 overflow-hidden group">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide relative aspect-video">
+                                <a href="galeria/Screenshot 2026-04-08 235537.png" class="glightbox">
+                                    <img src="galeria/Screenshot 2026-04-08 235537.png" alt="Dashboard 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                </a>
+                            </div>
+                            <div class="swiper-slide relative aspect-video">
+                                <a href="galeria/Screenshot 2026-04-08 235558.png" class="glightbox">
+                                    <img src="galeria/Screenshot 2026-04-08 235558.png" alt="Dashboard 2" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <div class="swiper-slide relative aspect-video">
+                                <a href="galeria/Screenshot 2026-04-08 235612.png" class="glightbox">
+                                    <img src="galeria/Screenshot 2026-04-08 235612.png" alt="Dashboard 3" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <div class="swiper-slide relative aspect-video">
+                                <a href="galeria/Screenshot 2026-04-08 235628.png" class="glightbox">
+                                    <img src="galeria/Screenshot 2026-04-08 235628.png" alt="Dashboard 4" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <div class="swiper-slide relative aspect-video">
+                                <a href="galeria/Screenshot 2026-04-08 235649.png" class="glightbox">
+                                    <img src="galeria/Screenshot 2026-04-08 235649.png" alt="Dashboard 5" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-next !text-primary after:!text-2xl"></div>
+                        <div class="swiper-button-prev !text-primary after:!text-2xl"></div>
+                        
+                        <div class="absolute top-4 left-4 z-10">
+                            <div class="bg-white/90 p-4 rounded-xl shadow-lg border border-primary/20 backdrop-blur-sm">
+                                <p class="text-[10px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
+                                    <i data-lucide="layout-dashboard" class="w-3 h-3"></i> Dashboard Real-Time
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DEL DASHBOARD (PROTAGONISTA) -->
-    <section class="py-24 bg-gray-100">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Interfaz del Sistema BOA</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
-                Hemos diseñado un panel de control intuitivo que permite a la administración del hotel gestionar reservaciones, clientes y habitaciones desde una única plataforma digital.
+    <!-- SECCIÓN 3: Agitación del Problema -->
+    <section id="problema" class="py-24 bg-dark text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 animate-on-scroll uppercase tracking-tighter">Identifiquen a su enemigo común.</h2>
+            <p class="text-xl text-gray-400 mb-10 animate-on-scroll delay-100 font-light">
+                El registro manual del Hotel 2 Aries está frenando su rentabilidad. ¿Les resulta familiar el caos del papel?
             </p>
-            
-            <div class="dashboard-frame" data-aos="zoom-in">
-                <!-- Imagen de un Dashboard de Gestión Hotelera Real -->
-                <img src="https://images.unsplash.com/photo-1551288049-bbdac8a28a1e?auto=format&fit=crop&w=1200&q=80" alt="Vista del Dashboard Sistema BOA">
-            </div>
-            
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                <div>
-                    <span class="text-4xl font-bold text-navy">100%</span>
-                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Automatizado</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-12">
+                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Caos del Cuaderno</h3>
+                    <p class="text-gray-400 text-sm italic">Hojas sueltas, letra ilegible y registros perdidos que causan errores en las reservaciones.</p>
                 </div>
-                <div>
-                    <span class="text-4xl font-bold text-navy">0</span>
-                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Papel Usado</p>
+                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll delay-100">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Check-in Lento</h3>
+                    <p class="text-gray-400 text-sm italic">Clientes desesperados por repetir sus datos en cada visita. La ineficiencia mata la experiencia.</p>
                 </div>
-                <div>
-                    <span class="text-4xl font-bold text-navy">RealTime</span>
-                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Actualización</p>
-                </div>
-                <div>
-                    <span class="text-4xl font-bold text-navy">Cloud</span>
-                    <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Almacenamiento</p>
+                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll delay-200">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
+                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Pérdida de Control</h3>
+                    <p class="text-gray-400 text-sm italic">Incapacidad para saber qué habitaciones están libres sin llamar o revisar 20 páginas de registros.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Información de Habitaciones y Gestión -->
-    <section class="py-24 container mx-auto px-6">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl font-bold mb-4">Gestión de Alojamiento</h2>
-            <div class="w-24 h-1 bg-gold mx-auto"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
-                <h4 class="text-xl font-bold mb-4 text-navy">Unipersonal</h4>
-                <p class="text-sm text-gray-500 mb-4">Gestión individual para viajeros de negocios o académicos.</p>
-                <span class="text-gold font-bold">Estado: Monitoreado</span>
+    <!-- SECCIÓN 4: Solución y Beneficios -->
+    <section id="solucion" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <h2 class="text-primary font-bold tracking-widest uppercase text-xs mb-2">La Solución Digital</h2>
+                <h3 class="text-3xl md:text-5xl font-extrabold text-dark mb-4 uppercase tracking-tighter">HospyAries al rescate.</h3>
+                <p class="text-lg text-gray-600 font-light">Cambiamos los cuadernos por un sistema en la nube que automatiza el 90% de la administración.</p>
             </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
-                <h4 class="text-xl font-bold mb-4 text-navy">Matrimonial</h4>
-                <p class="text-sm text-gray-500 mb-4">Control de ocupación premium para parejas.</p>
-                <span class="text-gold font-bold">Estado: Monitoreado</span>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
-                <h4 class="text-xl font-bold mb-4 text-navy">Doble Cama</h4>
-                <p class="text-sm text-gray-500 mb-4">Optimización de espacios compartidos.</p>
-                <span class="text-gold font-bold">Estado: Monitoreado</span>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition">
-                <h4 class="text-xl font-bold mb-4 text-navy">Triples</h4>
-                <p class="text-sm text-gray-500 mb-4">Gestión de grupos y familias.</p>
-                <span class="text-gold font-bold">Estado: Monitoreado</span>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 animate-on-scroll">
+                    <h4 class="text-2xl font-black mb-4 italic text-primary">Control Total de 25 Habitaciones</h4>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Visualiza el estado de tu hotel (Ocupado, Reservado, Disponible) desde cualquier lugar. Mejora la toma de decisiones con datos reales.</p>
+                    <ul class="space-y-4 font-semibold text-dark">
+                        <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-secondary/10 transition-colors group">
+                            <div class="bg-green-100 p-1 rounded-full"><i data-lucide="check" class="text-primary w-4 h-4"></i></div>
+                            Check-in ágil en menos de 30 segundos.
+                        </li>
+                        <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-secondary/10 transition-colors group">
+                            <div class="bg-green-100 p-1 rounded-full"><i data-lucide="check" class="text-primary w-4 h-4"></i></div>
+                            Historial automático de clientes frecuentes.
+                        </li>
+                    </ul>
+                </div>
+                <div class="order-1 md:order-2 bg-slate-100 rounded-[2.5rem] aspect-video flex items-center justify-center border border-gray-100 group overflow-hidden cursor-pointer animate-on-scroll delay-200">
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Metodología Técnica -->
-    <section class="py-24 bg-navy text-white">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-4xl font-bold text-white mb-8">Proceso de Ingeniería</h2>
-                <p class="text-blue-200 mb-10 text-lg">
-                    El desarrollo del sistema BOA siguió rigurosos estándares académicos y metodologías ágiles para asegurar una entrega de calidad.
-                </p>
-                <div class="space-y-6">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">1</div>
-                        <div><h5 class="font-bold">Análisis de Requerimientos</h5><p class="text-xs opacity-60">Entrevistas y encuestas al personal del hotel.</p></div>
+    <!-- SECCIÓN 5: Cómo Funciona -->
+    <section class="py-24 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-5xl font-black text-dark mb-20 animate-on-scroll">Digitalización en 3 Pasos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <div class="flex flex-col items-center animate-on-scroll">
+                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
+                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">1</span>
+                        <i data-lucide="user-plus" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
                     </div>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">2</div>
-                        <div><h5 class="font-bold">Diseño UI/UX en Figma</h5><p class="text-xs opacity-60">Creación del prototipo "Wireframe Hotel Aries".</p></div>
+                    <h3 class="text-xl font-bold mb-2 italic">Registro Único</h3>
+                    <p class="text-gray-500 text-sm px-4">Ingresa los datos del cliente una sola vez. Supabase lo recordará por siempre.</p>
+                </div>
+                <div class="flex flex-col items-center animate-on-scroll delay-100">
+                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
+                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">2</span>
+                        <i data-lucide="bed" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
                     </div>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy font-bold mr-4">3</div>
-                        <div><h5 class="font-bold">Gestión con Trello</h5><p class="text-xs opacity-60">Control de hitos bajo el grupo BOA-VII.</p></div>
+                    <h3 class="text-xl font-bold mb-2 italic">Asignación Visual</h3>
+                    <p class="text-gray-500 text-sm px-4">Selecciona habitación y asigna el turno de venta con un par de clics.</p>
+                </div>
+                <div class="flex flex-col items-center animate-on-scroll delay-200">
+                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
+                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">3</span>
+                        <i data-lucide="bar-chart-3" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 italic">Análisis de KPIs</h3>
+                    <p class="text-gray-500 text-sm px-4">Visualiza ingresos y ocupación en tiempo real para optimizar tu hotel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 6: Prueba Social -->
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-dark mb-12 animate-on-scroll">Validado por el Negocio</h2>
+            <div class="max-w-4xl mx-auto bg-gray-50 p-12 rounded-[3rem] text-left shadow-sm border-l-8 border-primary animate-on-scroll">
+                <div class="flex text-yellow-500 mb-6">
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                </div>
+                <p class="text-xl md:text-2xl text-dark italic font-medium mb-8 leading-relaxed">"Antes de HospyAries, saber la disponibilidad real era un dolor de cabeza. Ahora, puedo ver todo desde mi celular y los reportes de ventas son exactos al final de cada turno."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary">
+                        <img src="imagenes/descarga.png" alt="Usuario" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-black text-dark">Propietario Hotel 2 Aries</p>
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Entrevista de Requerimientos | 15/03/26</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-white p-8 rounded-3xl text-navy">
-                <h4 class="text-2xl font-bold mb-6">Referencias Académicas</h4>
-                <p class="text-sm text-gray-600 italic mb-6">
-                    "Toda la documentación técnica y el sustento teórico de este sistema ha sido estructurado siguiendo las normas **APA 7**, garantizando el rigor científico requerido por la UNAN-MANAGUA."
-                </p>
-                <div class="flex items-center text-xs font-bold uppercase tracking-widest text-gold">
-                    <i class="fas fa-graduation-cap mr-2"></i> VII Semestre - Ingeniería en Sistemas
+        </div>
+    </section>
+
+    <!-- SECCIÓN 7: Target Audiencia -->
+    <section class="py-24 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-black text-dark">¿Para quién es HospyAries?</h2>
+                <p class="text-gray-600 mt-4 text-lg">Solución enfocada en modernizar la hotelería en Chontales.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border-l-8 border-primary hover:shadow-xl transition-all animate-on-scroll">
+                    <h3 class="font-black text-2xl mb-6 flex items-center gap-3"><i data-lucide="check-circle" class="text-primary w-8 h-8"></i> Perfecto para...</h3>
+                    <ul class="space-y-4 text-gray-600 font-medium italic">
+                        <li>• Dueños de hoteles con procesos manuales.</li>
+                        <li>• Administradores que buscan control de ventas.</li>
+                        <li>• Recepcionistas que desean agilizar el check-in.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border-l-8 border-red-500 hover:shadow-xl transition-all animate-on-scroll delay-100">
+                    <h3 class="font-black text-2xl mb-6 flex items-center gap-3"><i data-lucide="x-circle" class="text-red-500 w-8 h-8"></i> NO es para...</h3>
+                    <ul class="space-y-4 text-gray-400 font-medium italic">
+                        <li>• Grandes cadenas con ERPs corporativos.</li>
+                        <li>• Negocios que no deseen digitalizarse.</li>
+                        <li>• Hoteles sin acceso a internet o dispositivos.</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 8: FAQ -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-black text-center text-dark mb-16 uppercase tracking-tighter italic underline decoration-secondary">Dudas técnicas comunes</h2>
+            <div class="space-y-4">
+                <details class="group bg-gray-50 rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 animate-on-scroll">
+                    <summary class="flex justify-between items-center font-bold p-6">
+                        <span class="text-lg group-hover:text-primary transition-colors italic">¿Los datos están seguros en la nube?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-white p-1 rounded-full shadow-sm">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 font-medium leading-relaxed italic">
+                        Sí, HospyAries utiliza Supabase (Backend-as-a-Service), lo que garantiza encriptación de datos y respaldos automáticos en tiempo real.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 animate-on-scroll">
+                    <summary class="flex justify-between items-center font-bold p-6">
+                        <span class="text-lg group-hover:text-primary transition-colors italic">¿Puedo usarlo sin internet?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 bg-white p-1 rounded-full shadow-sm">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 font-medium leading-relaxed italic">
+                        Al ser una PWA híbrida, permite ciertas consultas offline, aunque para el registro de ventas y sincronización se requiere conexión estable.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 9: Escasez / Urgencia -->
+    <section class="py-16 bg-orange-50 border-y border-orange-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+            <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-3 rounded-full font-black text-sm mb-4 uppercase tracking-widest">
+                <i data-lucide="clock" class="w-5 h-5 animate-pulse"></i>
+                Fase de Piloto Exclusiva
+            </div>
+            <p class="text-lg text-gray-700 font-bold italic uppercase tracking-tighter leading-none">Únete hoy al Hotel 2 Aries en la digitalización. Solo quedan 5 cupos para el programa piloto BOA.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 10: Equipo Fundador -->
+    <section id="equipo" class="py-24 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-black text-dark mb-20 uppercase tracking-tighter">Equipo de Ingeniería BOA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <!-- Juan José -->
+                <a href="https://github.com/juancalero07" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll group">
+                    <div class="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
+                        <img src="imagenes/descarga.png" alt="Juan José" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-dark mb-1">Juan José Calero</h3>
+                    <p class="text-primary font-bold text-[10px] uppercase mb-4 italic tracking-widest">Software Architect</p>
+                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Especialista en arquitectura PWA y lógica de base de datos."</p>
+                </a>
+                <!-- Heidy -->
+                <a href="https://github.com/HeidyLuna250" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-100 group">
+                    <div class="w-24 h-24 bg-secondary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
+                        <img src="imagenes/descarga.png" alt="Heidy" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-secondary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-dark mb-1">Heidy J. Huete</h3>
+                    <p class="text-secondary font-bold text-[10px] uppercase mb-4 italic tracking-widest">UX/UI Designer</p>
+                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Enfocada en crear interfaces intuitivas para recepcionistas."</p>
+                </a>
+                <!-- Cairo -->
+                <a href="https://github.com/Losvu" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-200 group">
+                    <div class="w-24 h-24 bg-dark/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
+                        <img src="imagenes/descarga.png" alt="Cairo" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-dark text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-dark mb-1">Cairo T. Amador</h3>
+                    <p class="text-dark font-bold text-[10px] uppercase mb-4 italic tracking-widest">QA Engineer</p>
+                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Asegurando estabilidad y el rendimiento del sistema BOA."</p>
+                </a>
+                <!-- Jonathan (Asesor) -->
+                <a href="https://github.com/jonathanquehay" target="_blank" class="bg-primary/5 p-8 rounded-[2.5rem] shadow-sm border border-primary/10 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-300 group">
+                    <div class="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
+                        <img src="imagenes/descarga.png" alt="Jonathan" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-dark mb-1">Jonathan Quehay</h3>
+                    <p class="text-primary font-bold text-[10px] uppercase mb-4 italic tracking-widest">Asesor Marketing IT</p>
+                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Mentor y autor de la metodología del proyecto."</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 11: Call To Action Final -->
+    <section id="cta-final" class="py-24 bg-primary relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-10 blur-3xl animate-pulse-slow"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-on-scroll">
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tighter italic">¿Listo para el cambio?</h2>
+            <p class="text-xl text-indigo-100 mb-12 font-light">
+                Digitaliza tu hotel hoy mismo. Únete a la revolución de **HospyAries** y toma el control de tu negocio.
+            </p>
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 group">
+                <input type="email" placeholder="Tu mejor correo" class="flex-1 px-6 py-4 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-accent transition-all shadow-lg font-bold" required>
+                <button type="submit" class="bg-dark text-white px-10 py-4 rounded-xl font-black uppercase text-sm hover:bg-black hover:-translate-y-1 transition-all duration-300 shadow-xl">
+                    Solicitar Acceso
+                </button>
+            </form>
+            <p class="text-[10px] text-white/60 mt-6 uppercase tracking-widest italic font-bold">
+                <i data-lucide="lock" class="w-3 h-3 inline mr-1"></i> Datos protegidos por Supabase Cloud
+            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="container mx-auto px-6 text-center">
-            <h4 class="text-2xl font-bold text-gold mb-2">CUR-Chontales “Cornelio Silva Argüello”</h4>
-            <p class="text-gray-400 mb-8 max-w-lg mx-auto">Proyecto de innovación para la modernización de la gestión hotelera en Chontales, Nicaragua.</p>
-            <div class="flex justify-center space-x-6 mb-12">
-                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-2xl hover:text-gold transition"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/50588271227" class="text-2xl hover:text-gold transition"><i class="fab fa-whatsapp"></i></a>
+    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3 opacity-50 hover:opacity-100 transition-opacity">
+                <img src="imagenes/Screenshot 2026-04-07 135810.png" alt="Logo" class="h-8 w-auto grayscale">
+                <span class="font-black text-white italic">HospyAries</span>
             </div>
-            <div class="text-[10px] text-gray-600 uppercase tracking-[0.3em] border-t border-gray-800 pt-10">
-                © 2026 PROYECTO BOA | INGENIERÍA EN SISTEMAS | UNAN-MANAGUA
+            <p class="text-[10px] uppercase font-bold tracking-[0.3em]">© 2026 PROYECTO BOA | UNAN-MANAGUA CUR-CHONTALES</p>
+            <div class="flex gap-6 text-xl">
+                <a href="#" class="hover:text-primary transition-all"><i data-lucide="facebook"></i></a>
+                <a href="#" class="hover:text-primary transition-all"><i data-lucide="instagram"></i></a>
+                <a href="https://wa.me/50588271227" class="hover:text-primary transition-all"><i data-lucide="phone"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mainSwiper", {
+        lucide.createIcons();
+        
+        const header = document.getElementById('main-header');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md', 'bg-white/95');
+                header.classList.remove('bg-white/70');
+            } else {
+                header.classList.remove('shadow-md', 'bg-white/95');
+                header.classList.add('bg-white/70');
+            }
+            lastScrollY = window.scrollY;
+        }, { passive: true });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Initialize Swiper for Dashboard
+        const swiper = new Swiper('.dashboard-swiper', {
             loop: true,
-            autoplay: { delay: 5000, disableOnInteraction: false },
-            effect: "fade",
-            speed: 1500
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+        });
+
+        // Initialize GLightbox
+        const lightbox = GLightbox({
+            selector: '.glightbox'
         });
     </script>
 </body>
