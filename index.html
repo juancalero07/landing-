@@ -16,11 +16,11 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F6B6B', // Verde Oscuro HospyAries
-                        secondary: '#1A8C8C', // Verde Medio
-                        accent: '#6BB5A8', // Verde Claro
+                        primary: '#4F46E5',
+                        secondary: '#06B6D4',
+                        accent: '#F43F5E',
                         dark: '#0F172A',
-                        light: '#F2F2F2' // Gris Fondo
+                        light: '#F8FAFC'
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -40,6 +40,16 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(79, 70, 229, 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        .bg-grid-dark {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -50,8 +60,17 @@
             transform: translateY(0);
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FLPGEQ6D4D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FLPGEQ6D4D');
+</script>
 </head>
-<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-primary selection:text-white overflow-x-hidden">
+<body class="font-sans text-gray-800 bg-light antialiased selection:bg-primary selection:text-white overflow-x-hidden">
 
     <!-- SECCIÓN 1: Navegación -->
     <header class="fixed w-full glass-effect shadow-sm z-50 transition-all duration-500 transform translate-y-0" id="main-header">
@@ -76,7 +95,7 @@
                     </a>
                 </nav>
                 <div class="flex items-center">
-                    <a href="https://wa.me/50588271227" target="_blank" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-secondary hover:shadow-lg hover:-translate-y-0.5 transform transition-all duration-300 text-[10px] uppercase tracking-widest">
+                    <a href="https://wa.me/50588271227" target="_blank" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-dark hover:shadow-lg hover:-translate-y-0.5 transform transition-all duration-300 text-[10px] uppercase tracking-widest">
                         Únanse a la Beta
                     </a>
                 </div>
@@ -84,24 +103,12 @@
         </div>
     </header>
 
-    <!-- NOTA EDUCATIVA UX/UI (Del Prof) -->
-    <div class="fixed bottom-4 right-4 z-50 max-w-sm bg-white p-4 rounded-xl shadow-2xl border-l-4 border-secondary" id="ux-toast">
-        <div class="flex items-start gap-3">
-            <i data-lucide="lightbulb" class="text-secondary w-6 h-6 flex-shrink-0 mt-1"></i>
-            <div>
-                <h4 class="font-bold text-sm text-dark">💡 Equipo: Nota sobre UX/UI</h4>
-                <p class="text-xs text-gray-600 mt-1">HospyAries usa <strong>scroll reveals</strong> para guiar al administrador por el flujo de digitalización del Hotel 2 Aries.</p>
-                <button onclick="document.getElementById('ux-toast').style.display='none'" class="text-xs text-gray-400 hover:text-gray-800 mt-2 underline text-left">Entendido</button>
-            </div>
-        </div>
-    </div>
-
     <!-- SECCIÓN 2: Hero Section -->
-    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-white">
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-white bg-grid-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="text-center lg:text-left z-10 animate-on-scroll">
-                    <div class="inline-block bg-accent/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold mb-6 tracking-widest uppercase border border-accent/20">
+                    <div class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold mb-6 tracking-widest uppercase border border-primary/20">
                         💡 Proyecto de Ingeniería | BOA
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark leading-tight mb-6 tracking-tight">
@@ -111,7 +118,7 @@
                         Digitaliza el Hotel 2 Aries con <strong>HospyAries</strong>. Centraliza tus 25 habitaciones, clientes y ventas en una PWA híbrida bajo Supabase Cloud.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="https://wa.me/50588271227" class="group bg-primary text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-secondary transition-all duration-300 shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2 relative overflow-hidden">
+                        <a href="https://wa.me/50588271227" class="group bg-primary text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-dark transition-all duration-300 shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2 relative overflow-hidden">
                             <i data-lucide="rocket" class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                             Solicitar Demo
                         </a>
@@ -121,9 +128,8 @@
                     </div>
                 </div>
                 <div class="relative mx-auto w-full max-w-md lg:max-w-none animate-on-scroll delay-200">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse-slow"></div>
                     
-                    <!-- Swiper Gallery -->
                     <div class="swiper dashboard-swiper rounded-[2.5rem] shadow-2xl border-[8px] border-dark hover:border-primary transition-colors duration-500 overflow-hidden group">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide relative aspect-video">
@@ -152,9 +158,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
-                        <!-- Add Navigation -->
                         <div class="swiper-button-next !text-primary after:!text-2xl"></div>
                         <div class="swiper-button-prev !text-primary after:!text-2xl"></div>
                         
@@ -172,40 +176,74 @@
     </section>
 
     <!-- SECCIÓN 3: Agitación del Problema -->
-    <section id="problema" class="py-24 bg-dark text-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 animate-on-scroll uppercase tracking-tighter">Identifiquen a su enemigo común.</h2>
-            <p class="text-xl text-gray-400 mb-10 animate-on-scroll delay-100 font-light">
-                El registro manual del Hotel 2 Aries está frenando su rentabilidad. ¿Les resulta familiar el caos del papel?
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-12">
-                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll">
-                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
-                        <i data-lucide="book-open" class="w-6 h-6"></i>
+    <section id="problema" class="py-24 bg-dark bg-grid-dark relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(79,70,229,0.1)_0%,_transparent_70%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-20 animate-on-scroll">
+                <div class="flex justify-center mb-8">
+                    <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 px-6 py-2 rounded-xl backdrop-blur-md">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+                        </span>
+                        <span class="text-white text-[10px] font-black uppercase tracking-[0.4em]">Auditoría Crítica</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Caos del Cuaderno</h3>
-                    <p class="text-gray-400 text-sm italic">Hojas sueltas, letra ilegible y registros perdidos que causan errores en las reservaciones.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll delay-100">
-                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
-                        <i data-lucide="clock" class="w-6 h-6"></i>
+
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase italic">
+                    Identifiquen a su <span class="text-primary italic">enemigo común.</span>
+                </h2>
+                <p class="text-xl text-gray-400 font-light leading-relaxed">
+                    El registro manual del Hotel 2 Aries está frenando su rentabilidad. <span class="text-white font-medium border-b-2 border-primary/30 pb-1">¿Les resulta familiar el caos del papel?</span>
+                </p>
+            </div>
+
+            <div class="space-y-16 max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-start animate-on-scroll border-l-2 border-primary/30 pl-8 relative group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-primary rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(79,70,229,0.5)]"></div>
+                    <div class="text-primary bg-primary/10 p-4 rounded-2xl border border-primary/20">
+                        <i data-lucide="file-x-2" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Check-in Lento</h3>
-                    <p class="text-gray-400 text-sm italic">Clientes desesperados por repetir sus datos en cada visita. La ineficiencia mata la experiencia.</p>
+                    <div>
+                        <h3 class="text-2xl font-black text-white mb-3 tracking-tight">Caos del Cuaderno</h3>
+                        <p class="text-xl text-gray-400 font-light leading-relaxed italic">Hojas sueltas y registros perdidos que causan errores críticos en la administración diaria.</p>
+                    </div>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-3xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 animate-on-scroll delay-200">
-                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4">
-                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+
+                <div class="flex flex-col md:flex-row gap-8 items-start animate-on-scroll delay-100 border-l-2 border-primary/30 pl-8 relative group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-primary rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(79,70,229,0.5)]"></div>
+                    <div class="text-primary bg-primary/10 p-4 rounded-2xl border border-primary/20">
+                        <i data-lucide="timer-off" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Pérdida de Control</h3>
-                    <p class="text-gray-400 text-sm italic">Incapacidad para saber qué habitaciones están libres sin llamar o revisar 20 páginas de registros.</p>
+                    <div>
+                        <h3 class="text-2xl font-black text-white mb-3 tracking-tight">Check-in Lento</h3>
+                        <p class="text-xl text-gray-400 font-light leading-relaxed italic">Clientes esperando por registros manuales ineficientes que afectan la experiencia del usuario y la imagen del hotel.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-start animate-on-scroll delay-200 border-l-2 border-primary/30 pl-8 relative group">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-primary rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(79,70,229,0.5)]"></div>
+                    <div class="text-primary bg-primary/10 p-4 rounded-2xl border border-primary/20">
+                        <i data-lucide="eye-off" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-white mb-3 tracking-tight">Cero Visibilidad</h3>
+                        <p class="text-xl text-gray-400 font-light leading-relaxed italic">Dificultad para conocer el estado real de las habitaciones sin una revisión física constante y tediosa.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-24 text-center animate-on-scroll">
+                <div class="inline-block px-8 py-3 bg-white/5 border border-white/10 rounded-2xl">
+                    <p class="text-primary/70 font-black uppercase tracking-[0.4em] text-[10px]">Diagnóstico Técnico | Proyecto BOA</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECCIÓN 4: Solución y Beneficios -->
-    <section id="solucion" class="py-24 bg-white overflow-hidden">
+    <section id="solucion" class="py-24 bg-white bg-grid-pattern overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
                 <h2 class="text-primary font-bold tracking-widest uppercase text-xs mb-2">La Solución Digital</h2>
@@ -217,13 +255,13 @@
                 <div class="order-2 md:order-1 animate-on-scroll">
                     <h4 class="text-2xl font-black mb-4 italic text-primary">Control Total de 25 Habitaciones</h4>
                     <p class="text-gray-600 mb-6 leading-relaxed">Visualiza el estado de tu hotel (Ocupado, Reservado, Disponible) desde cualquier lugar. Mejora la toma de decisiones con datos reales.</p>
-                    <ul class="space-y-4 font-semibold text-dark">
-                        <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-secondary/10 transition-colors group">
-                            <div class="bg-green-100 p-1 rounded-full"><i data-lucide="check" class="text-primary w-4 h-4"></i></div>
+                    <ul class="space-y-6">
+                        <li class="flex items-center gap-4 text-dark font-bold">
+                            <div class="bg-primary/10 p-2 rounded-lg text-primary"><i data-lucide="zap" class="w-5 h-5"></i></div>
                             Check-in ágil en menos de 30 segundos.
                         </li>
-                        <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-secondary/10 transition-colors group">
-                            <div class="bg-green-100 p-1 rounded-full"><i data-lucide="check" class="text-primary w-4 h-4"></i></div>
+                        <li class="flex items-center gap-4 text-dark font-bold">
+                            <div class="bg-primary/10 p-2 rounded-lg text-primary"><i data-lucide="users" class="w-5 h-5"></i></div>
                             Historial automático de clientes frecuentes.
                         </li>
                     </ul>
@@ -236,54 +274,60 @@
     </section>
 
     <!-- SECCIÓN 5: Cómo Funciona -->
-    <section class="py-24 bg-gray-50 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-black text-dark mb-20 animate-on-scroll">Digitalización en 3 Pasos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                <div class="flex flex-col items-center animate-on-scroll">
-                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
-                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">1</span>
-                        <i data-lucide="user-plus" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-primary font-black tracking-widest uppercase text-xs mb-4">Proceso Ágil</h2>
+            <h3 class="text-4xl md:text-6xl font-black text-dark mb-20 tracking-tighter">Digitalización en 3 Pasos</h3>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 relative">
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gray-100 z-0"></div>
+                
+                <div class="relative z-10 flex-1 flex flex-col items-center animate-on-scroll">
+                    <div class="w-24 h-24 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl mb-8 border-8 border-white group-hover:scale-110 transition-transform">
+                        <span class="text-3xl font-black">1</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 italic">Registro Único</h3>
-                    <p class="text-gray-500 text-sm px-4">Ingresa los datos del cliente una sola vez. Supabase lo recordará por siempre.</p>
+                    <h4 class="text-2xl font-black mb-4 text-dark">Registro Único</h4>
+                    <p class="text-gray-500 font-medium leading-relaxed px-6">Ingresa los datos del cliente una sola vez. Supabase lo recordará por siempre.</p>
                 </div>
-                <div class="flex flex-col items-center animate-on-scroll delay-100">
-                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
-                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">2</span>
-                        <i data-lucide="bed" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
+
+                <div class="relative z-10 flex-1 flex flex-col items-center animate-on-scroll delay-100">
+                    <div class="w-24 h-24 bg-secondary text-white rounded-full flex items-center justify-center shadow-2xl mb-8 border-8 border-white group-hover:scale-110 transition-transform">
+                        <span class="text-3xl font-black">2</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 italic">Asignación Visual</h3>
-                    <p class="text-gray-500 text-sm px-4">Selecciona habitación y asigna el turno de venta con un par de clics.</p>
+                    <h4 class="text-2xl font-black mb-4 text-dark">Asignación Visual</h4>
+                    <p class="text-gray-500 font-medium leading-relaxed px-6">Selecciona habitación y asigna el turno de venta con un par de clics.</p>
                 </div>
-                <div class="flex flex-col items-center animate-on-scroll delay-200">
-                    <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6 relative hover:-translate-y-2 transition-all duration-300 group border-b-4 border-primary">
-                        <span class="absolute -top-3 -right-3 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center font-black shadow-lg">3</span>
-                        <i data-lucide="bar-chart-3" class="w-10 h-10 text-primary group-hover:scale-110 transition-transform"></i>
+
+                <div class="relative z-10 flex-1 flex flex-col items-center animate-on-scroll delay-200">
+                    <div class="w-24 h-24 bg-accent text-white rounded-full flex items-center justify-center shadow-2xl mb-8 border-8 border-white group-hover:scale-110 transition-transform">
+                        <span class="text-3xl font-black">3</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 italic">Análisis de KPIs</h3>
-                    <p class="text-gray-500 text-sm px-4">Visualiza ingresos y ocupación en tiempo real para optimizar tu hotel.</p>
+                    <h4 class="text-2xl font-black mb-4 text-dark">Análisis de KPIs</h4>
+                    <p class="text-gray-500 font-medium leading-relaxed px-6">Visualiza ingresos y ocupación en tiempo real para optimizar tu hotel.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECCIÓN 6: Prueba Social -->
-    <section class="py-24 bg-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-dark mb-12 animate-on-scroll">Validado por el Negocio</h2>
-            <div class="max-w-4xl mx-auto bg-gray-50 p-12 rounded-[3rem] text-left shadow-sm border-l-8 border-primary animate-on-scroll">
-                <div class="flex text-yellow-500 mb-6">
-                    <i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i><i data-lucide="star" class="w-6 h-6 fill-current"></i>
+    <section class="py-24 bg-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16 animate-on-scroll">
+                <div class="lg:w-1/2 relative group">
+                    <div class="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Socio" class="relative rounded-[3rem] w-full h-[500px] object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
                 </div>
-                <p class="text-xl md:text-2xl text-dark italic font-medium mb-8 leading-relaxed">"Antes de HospyAries, saber la disponibilidad real era un dolor de cabeza. Ahora, puedo ver todo desde mi celular y los reportes de ventas son exactos al final de cada turno."</p>
-                <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary">
-                        <img src="imagenes/descarga.png" alt="Usuario" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <p class="font-black text-dark">Propietario Hotel 2 Aries</p>
-                        <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Entrevista de Requerimientos | 15/03/26</p>
+                <div class="lg:w-1/2">
+                    <i data-lucide="quote" class="w-16 h-16 text-primary mb-8 opacity-50"></i>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white mb-12 italic leading-tight tracking-tight">
+                        "Antes de HospyAries, la disponibilidad era un <span class="text-primary not-italic border-b-4 border-primary/20">dolor de cabeza.</span> Ahora, todo mi hotel está bajo control."
+                    </h3>
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-1 bg-primary"></div>
+                        <div>
+                            <p class="text-2xl font-black text-white uppercase tracking-tighter">Propietario Hotel 2 Aries</p>
+                            <p class="text-sm text-primary font-bold uppercase tracking-[0.3em] italic">Socio Estratégico | Chontales</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -291,27 +335,28 @@
     </section>
 
     <!-- SECCIÓN 7: Target Audiencia -->
-    <section class="py-24 bg-indigo-50">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-black text-dark">¿Para quién es HospyAries?</h2>
-                <p class="text-gray-600 mt-4 text-lg">Solución enfocada en modernizar la hotelería en Chontales.</p>
+            <div class="text-center mb-20 animate-on-scroll">
+                <h2 class="text-4xl md:text-6xl font-black text-dark tracking-tighter mb-6">¿Para quién es <span class="text-primary">HospyAries</span>?</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border-l-8 border-primary hover:shadow-xl transition-all animate-on-scroll">
-                    <h3 class="font-black text-2xl mb-6 flex items-center gap-3"><i data-lucide="check-circle" class="text-primary w-8 h-8"></i> Perfecto para...</h3>
-                    <ul class="space-y-4 text-gray-600 font-medium italic">
-                        <li>• Dueños de hoteles con procesos manuales.</li>
-                        <li>• Administradores que buscan control de ventas.</li>
-                        <li>• Recepcionistas que desean agilizar el check-in.</li>
+            
+            <div class="flex flex-col md:flex-row gap-16 max-w-5xl mx-auto">
+                <div class="flex-1 animate-on-scroll border-t-4 border-primary pt-8">
+                    <h3 class="font-black text-3xl mb-8 text-dark tracking-tight italic uppercase">Perfecto para...</h3>
+                    <ul class="space-y-6 text-xl font-medium text-gray-600">
+                        <li class="flex items-center gap-4"><i data-lucide="check" class="text-primary"></i> Dueños con procesos manuales.</li>
+                        <li class="flex items-center gap-4"><i data-lucide="check" class="text-primary"></i> Administradores de ventas.</li>
+                        <li class="flex items-center gap-4"><i data-lucide="check" class="text-primary"></i> Recepcionistas proactivos.</li>
                     </ul>
                 </div>
-                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border-l-8 border-red-500 hover:shadow-xl transition-all animate-on-scroll delay-100">
-                    <h3 class="font-black text-2xl mb-6 flex items-center gap-3"><i data-lucide="x-circle" class="text-red-500 w-8 h-8"></i> NO es para...</h3>
-                    <ul class="space-y-4 text-gray-400 font-medium italic">
-                        <li>• Grandes cadenas con ERPs corporativos.</li>
-                        <li>• Negocios que no deseen digitalizarse.</li>
-                        <li>• Hoteles sin acceso a internet o dispositivos.</li>
+                
+                <div class="flex-1 animate-on-scroll delay-100 border-t-4 border-gray-100 pt-8 opacity-50">
+                    <h3 class="font-black text-3xl mb-8 text-gray-400 tracking-tight italic uppercase">NO es para...</h3>
+                    <ul class="space-y-6 text-xl font-medium text-gray-400">
+                        <li class="flex items-center gap-4"><i data-lucide="x" class="text-gray-300"></i> Grandes cadenas corporativas.</li>
+                        <li class="flex items-center gap-4"><i data-lucide="x" class="text-gray-300"></i> Quienes no desean digitalizarse.</li>
+                        <li class="flex items-center gap-4"><i data-lucide="x" class="text-gray-300"></i> Hoteles sin acceso a internet.</li>
                     </ul>
                 </div>
             </div>
@@ -319,113 +364,102 @@
     </section>
 
     <!-- SECCIÓN 8: FAQ -->
-    <section id="faq" class="py-24 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-black text-center text-dark mb-16 uppercase tracking-tighter italic underline decoration-secondary">Dudas técnicas comunes</h2>
+    <section id="faq" class="py-24 bg-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-black text-center text-dark mb-20 tracking-tighter italic">Dudas técnicas comunes</h2>
             <div class="space-y-4">
-                <details class="group bg-gray-50 rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 animate-on-scroll">
-                    <summary class="flex justify-between items-center font-bold p-6">
-                        <span class="text-lg group-hover:text-primary transition-colors italic">¿Los datos están seguros en la nube?</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180 bg-white p-1 rounded-full shadow-sm">
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
-                        </span>
+                <details class="group py-6 border-b border-gray-200 cursor-pointer animate-on-scroll">
+                    <summary class="flex justify-between items-center font-black">
+                        <span class="text-xl text-dark group-hover:text-primary transition-colors tracking-tight">¿Los datos están seguros en la nube?</span>
+                        <i data-lucide="plus" class="w-6 h-6 text-primary group-open:rotate-45 transition-transform"></i>
                     </summary>
-                    <div class="text-gray-500 px-6 pb-6 pt-0 font-medium leading-relaxed italic">
-                        Sí, HospyAries utiliza Supabase (Backend-as-a-Service), lo que garantiza encriptación de datos y respaldos automáticos en tiempo real.
-                    </div>
+                    <p class="pt-4 text-gray-500 text-lg font-medium leading-relaxed italic">
+                        Sí, HospyAries utiliza <span class="text-primary font-bold">Supabase</span>, lo que garantiza encriptación de grado bancario y respaldos automáticos en tiempo real.
+                    </p>
                 </details>
-                <details class="group bg-gray-50 rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 animate-on-scroll">
-                    <summary class="flex justify-between items-center font-bold p-6">
-                        <span class="text-lg group-hover:text-primary transition-colors italic">¿Puedo usarlo sin internet?</span>
-                        <span class="transition-transform duration-300 group-open:rotate-180 bg-white p-1 rounded-full shadow-sm">
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
-                        </span>
+
+                <details class="group py-6 border-b border-gray-200 cursor-pointer animate-on-scroll">
+                    <summary class="flex justify-between items-center font-black">
+                        <span class="text-xl text-dark group-hover:text-primary transition-colors tracking-tight">¿Puedo usarlo sin internet?</span>
+                        <i data-lucide="plus" class="w-6 h-6 text-primary group-open:rotate-45 transition-transform"></i>
                     </summary>
-                    <div class="text-gray-500 px-6 pb-6 pt-0 font-medium leading-relaxed italic">
-                        Al ser una PWA híbrida, permite ciertas consultas offline, aunque para el registro de ventas y sincronización se requiere conexión estable.
-                    </div>
+                    <p class="pt-4 text-gray-500 text-lg font-medium leading-relaxed italic">
+                        Al ser una PWA híbrida, permite consultas básicas offline, aunque para el registro de ventas se requiere conexión activa para sincronizar con la nube.
+                    </p>
                 </details>
             </div>
         </div>
     </section>
 
     <!-- SECCIÓN 9: Escasez / Urgencia -->
-    <section class="py-16 bg-orange-50 border-y border-orange-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
-            <div class="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-3 rounded-full font-black text-sm mb-4 uppercase tracking-widest">
-                <i data-lucide="clock" class="w-5 h-5 animate-pulse"></i>
-                Fase de Piloto Exclusiva
+    <section class="py-24 bg-primary relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-on-scroll">
+            <h3 class="text-5xl md:text-8xl font-black text-white mb-12 tracking-tighter italic uppercase">
+                Únete a la <span class="text-secondary">revolución digital.</span>
+            </h3>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12">
+                <div class="text-left text-white">
+                    <p class="text-xs font-black uppercase tracking-[0.4em] opacity-60 mb-2">Estado Piloto BOA</p>
+                    <p class="text-3xl font-black italic">Fase de Selección Activa</p>
+                </div>
+                <div class="h-24 w-px bg-white/20 hidden md:block"></div>
+                <div class="text-white">
+                    <p class="text-xs font-black uppercase tracking-[0.4em] opacity-60 mb-2">Cupos Disponibles</p>
+                    <p class="text-8xl font-black tracking-tighter">05</p>
+                </div>
             </div>
-            <p class="text-lg text-gray-700 font-bold italic uppercase tracking-tighter leading-none">Únete hoy al Hotel 2 Aries en la digitalización. Solo quedan 5 cupos para el programa piloto BOA.</p>
         </div>
     </section>
 
     <!-- SECCIÓN 10: Equipo Fundador -->
-    <section id="equipo" class="py-24 bg-gray-50 border-b border-gray-200">
+    <section id="equipo" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-black text-dark mb-20 uppercase tracking-tighter">Equipo de Ingeniería BOA</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <!-- Juan José -->
-                <a href="https://github.com/juancalero07" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll group">
-                    <div class="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
-                        <img src="imagenes/descarga.png" alt="Juan José" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
+                <div class="animate-on-scroll flex flex-col items-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-gray-100 group-hover:border-primary transition-colors">
+                        <img src="imagenes/descarga.png" alt="Juan" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-black text-dark mb-1">Juan José Calero</h3>
-                    <p class="text-primary font-bold text-[10px] uppercase mb-4 italic tracking-widest">Software Architect</p>
-                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Especialista en arquitectura PWA y lógica de base de datos."</p>
-                </a>
-                <!-- Heidy -->
-                <a href="https://github.com/HeidyLuna250" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-100 group">
-                    <div class="w-24 h-24 bg-secondary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
-                        <img src="imagenes/descarga.png" alt="Heidy" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-secondary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    <h3 class="text-xl font-black text-dark">Juan Calero</h3>
+                    <p class="text-primary text-[10px] font-bold uppercase tracking-widest italic">Architect</p>
+                </div>
+                <div class="animate-on-scroll delay-100 flex flex-col items-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-gray-100 group-hover:border-secondary transition-colors">
+                        <img src="imagenes/descarga.png" alt="Heidy" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-black text-dark mb-1">Heidy J. Huete</h3>
-                    <p class="text-secondary font-bold text-[10px] uppercase mb-4 italic tracking-widest">UX/UI Designer</p>
-                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Enfocada en crear interfaces intuitivas para recepcionistas."</p>
-                </a>
-                <!-- Cairo -->
-                <a href="https://github.com/Losvu" target="_blank" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-200 group">
-                    <div class="w-24 h-24 bg-dark/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
-                        <img src="imagenes/descarga.png" alt="Cairo" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-dark text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    <h3 class="text-xl font-black text-dark">Heidy Huete</h3>
+                    <p class="text-secondary text-[10px] font-bold uppercase tracking-widest italic">Designer</p>
+                </div>
+                <div class="animate-on-scroll delay-200 flex flex-col items-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-gray-100 group-hover:border-dark transition-colors">
+                        <img src="imagenes/descarga.png" alt="Cairo" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-black text-dark mb-1">Cairo T. Amador</h3>
-                    <p class="text-dark font-bold text-[10px] uppercase mb-4 italic tracking-widest">QA Engineer</p>
-                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Asegurando estabilidad y el rendimiento del sistema BOA."</p>
-                </a>
-                <!-- Jonathan (Asesor) -->
-                <a href="https://github.com/jonathanquehay" target="_blank" class="bg-primary/5 p-8 rounded-[2.5rem] shadow-sm border border-primary/10 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll delay-300 group">
-                    <div class="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-md relative">
-                        <img src="imagenes/descarga.png" alt="Jonathan" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                        <i data-lucide="github" class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"></i>
+                    <h3 class="text-xl font-black text-dark">Cairo Amador</h3>
+                    <p class="text-dark text-[10px] font-bold uppercase tracking-widest italic">QA Engineer</p>
+                </div>
+                <div class="animate-on-scroll delay-300 flex flex-col items-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-gray-100 group-hover:border-primary transition-colors">
+                        <img src="imagenes/descarga.png" alt="Jonathan" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-xl font-black text-dark mb-1">Jonathan Quehay</h3>
-                    <p class="text-primary font-bold text-[10px] uppercase mb-4 italic tracking-widest">Asesor Marketing IT</p>
-                    <p class="text-gray-500 text-xs italic font-medium leading-relaxed">"Mentor y autor de la metodología del proyecto."</p>
-                </a>
+                    <h3 class="text-xl font-black text-dark">Jonathan Quehay</h3>
+                    <p class="text-primary text-[10px] font-bold uppercase tracking-widest italic">Marketing</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SECCIÓN 11: Call To Action Final -->
-    <section id="cta-final" class="py-24 bg-primary relative overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-10 blur-3xl animate-pulse-slow"></div>
+    <section id="cta-final" class="py-24 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-dark opacity-20"></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 animate-on-scroll">
-            <h2 class="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tighter italic">¿Listo para el cambio?</h2>
-            <p class="text-xl text-indigo-100 mb-12 font-light">
-                Digitaliza tu hotel hoy mismo. Únete a la revolución de **HospyAries** y toma el control de tu negocio.
-            </p>
-            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 group">
-                <input type="email" placeholder="Tu mejor correo" class="flex-1 px-6 py-4 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-accent transition-all shadow-lg font-bold" required>
-                <button type="submit" class="bg-dark text-white px-10 py-4 rounded-xl font-black uppercase text-sm hover:bg-black hover:-translate-y-1 transition-all duration-300 shadow-xl">
-                    Solicitar Acceso
+            <h2 class="text-5xl md:text-7xl font-black text-white mb-12 uppercase tracking-tighter italic">¿Listo para el cambio?</h2>
+            <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-8">
+                <input type="email" placeholder="Tu mejor correo" class="flex-1 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white focus:outline-none focus:border-primary transition-colors shadow-2xl" required>
+                <button type="submit" class="bg-primary text-white px-10 py-4 rounded-full font-black uppercase text-sm hover:scale-105 transition-transform shadow-xl shadow-primary/20">
+                    Solicitar Demo
                 </button>
             </form>
-            <p class="text-[10px] text-white/60 mt-6 uppercase tracking-widest italic font-bold">
-                <i data-lucide="lock" class="w-3 h-3 inline mr-1"></i> Datos protegidos por Supabase Cloud
-            </p>
+            <p class="text-[10px] text-white/40 uppercase tracking-[0.5em]">Seguridad por Supabase Cloud</p>
         </div>
     </section>
 
@@ -445,7 +479,56 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ==================== CHATBOT MEJORADO (AGREGADO) ==================== -->
+    <div id="hospy-chat-widget" class="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
+
+        <!-- Ventana del Chat -->
+        <div id="hospy-chat-window" 
+             class="hidden mb-4 w-[380px] h-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col transition-all duration-300 scale-95 opacity-0 origin-bottom-right">
+
+            <!-- Header -->
+            <div class="bg-primary px-5 py-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <div>
+                        <span class="font-bold text-base">HospyAries Assistant</span>
+                        <p class="text-xs text-white/70">En línea • Responde 24/7</p>
+                    </div>
+                </div>
+                <button onclick="toggleHospyChat()" class="hover:bg-white/20 p-2 rounded-xl transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Mensajes -->
+            <div id="hospy-messages" class="flex-1 p-5 overflow-y-auto bg-gray-50 space-y-4 custom-scrollbar">
+            </div>
+
+            <!-- Input -->
+            <div class="p-4 border-t bg-white">
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="hospy-input" 
+                        placeholder="Pregunta sobre HospyAries..." 
+                        class="flex-1 px-5 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:border-primary text-sm"
+                        onkeypress="if(event.key === 'Enter') sendHospyMessage()">
+                    <button 
+                        onclick="sendHospyMessage()"
+                        class="bg-primary hover:bg-indigo-700 text-white px-6 rounded-2xl font-medium transition-colors flex items-center">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón Flotante -->
+        <button onclick="toggleHospyChat()" 
+                class="bg-primary text-white p-4 rounded-3xl shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center w-16 h-16">
+            <i data-lucide="message-circle" class="w-8 h-8 group-hover:rotate-12 transition-transform"></i>
+        </button>
+    </div>
+
     <script>
         lucide.createIcons();
         
@@ -482,31 +565,88 @@
             observer.observe(el);
         });
 
-        // Initialize Swiper for Dashboard
         const swiper = new Swiper('.dashboard-swiper', {
             loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
             effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            },
+            fadeEffect: { crossFade: true }
         });
 
-        // Initialize GLightbox
-        const lightbox = GLightbox({
-            selector: '.glightbox'
-        });
+        const lightbox = GLightbox({ selector: '.glightbox' });
+
+        // ==================== CHATBOT SCRIPT ====================
+        function toggleHospyChat() {
+            const chatWindow = document.getElementById('hospy-chat-window');
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => chatWindow.classList.add('hidden'), 300);
+            }
+        }
+
+        function addHospyMessage(text, sender) {
+            const messages = document.getElementById('hospy-messages');
+            const div = document.createElement('div');
+            
+            if (sender === 'user') {
+                div.className = 'flex justify-end';
+                div.innerHTML = `<div class="max-w-[80%] bg-primary text-white px-4 py-3 rounded-2xl rounded-br-sm">${text}</div>`;
+            } else {
+                div.className = 'flex justify-start';
+                div.innerHTML = `<div class="max-w-[80%] bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm">${text}</div>`;
+            }
+            
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function sendHospyMessage() {
+            const input = document.getElementById('hospy-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addHospyMessage(message, 'user');
+            input.value = '';
+
+            try {
+                const res = await fetch('https://chatb-bot-hospyaries.onrender.com/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await res.json();
+                addHospyMessage(data.reply || "Lo siento, no pude procesar tu mensaje.", 'bot');
+            } catch (error) {
+                addHospyMessage('❌ No pude conectar con el asistente. Intenta más tarde.', 'bot');
+            }
+        }
+
+        let chatOpened = false;
+        const originalToggle = toggleHospyChat;
+        toggleHospyChat = function() {
+            originalToggle();
+            if (!chatOpened) {
+                setTimeout(() => {
+                    if (document.getElementById('hospy-messages').children.length === 0) {
+                        addHospyMessage("¡Hola! 👋 Soy el asistente de HospyAries. ¿Qué quieres saber sobre el proyecto?", 'bot');
+                    }
+                }, 600);
+                chatOpened = true;
+            }
+        };
+        // ========================================================
     </script>
 </body>
 </html>
