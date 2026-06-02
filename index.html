@@ -59,6 +59,14 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Calculator Styles */
+        .slider { -webkit-appearance: none; width: 100%; height: 8px; border-radius: 4px; background: #cbd5e1; outline: none; transition: opacity .2s; }
+        .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #4F46E5; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.1s; }
+        .slider::-webkit-slider-thumb:hover { transform: scale(1.15); background: #4338CA; }
+        .slider-app::-webkit-slider-thumb { background: #06B6D4; } 
+        .slider-app::-webkit-slider-thumb:hover { background: #0891B2; }
+        .number-transition { transition: all 0.3s ease; }
     </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FLPGEQ6D4D"></script>
@@ -398,6 +406,106 @@
                 </details>
             </div>
 
+            <!-- SECCIÓN: Auditor de Fricción Operativa (NUEVA) -->
+            <div class="mt-24 mb-12 animate-on-scroll">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-primary font-black tracking-widest uppercase text-xs mb-4">Herramienta de Diagnóstico</h2>
+                    <h3 class="text-3xl md:text-5xl font-black text-dark mb-6 tracking-tighter italic uppercase">Auditor de Fricción</h3>
+                    <p class="text-lg text-gray-500 font-medium">Calcula cuánto tiempo de vida operativa se desperdicia en procesos manuales del hotel.</p>
+                </div>
+
+                <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+                    <!-- PANEL IZQUIERDO: Inputs -->
+                    <section class="w-full lg:w-5/12 bg-slate-50 p-8 sm:p-12 border-r border-slate-200 flex flex-col justify-center">
+                        <div class="space-y-10">
+                            <!-- Input 1: Check-ins diarios -->
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="text-sm font-bold text-slate-700 uppercase tracking-wider">Check-ins diarios</label>
+                                    <span id="val-trafico" class="text-2xl font-black text-primary italic">25</span>
+                                </div>
+                                <input type="range" id="in-trafico" class="slider" min="5" max="100" step="5" value="25">
+                                <p class="text-xs text-slate-400 font-medium italic">Promedio de registros de huéspedes al día.</p>
+                            </div>
+
+                            <!-- Input 2: Tiempo Manual -->
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="text-sm font-bold text-slate-700 uppercase tracking-wider">Tiempo Manual</label>
+                                    <span id="val-manual" class="text-2xl font-black text-accent italic">5 min</span>
+                                </div>
+                                <input type="range" id="in-manual" class="slider" min="1" max="15" step="1" value="5">
+                                <p class="text-xs text-slate-400 font-medium italic">Buscar cuaderno, anotar datos, sellar y archivar.</p>
+                            </div>
+
+                            <!-- Input 3: Tiempo App Digital -->
+                            <div class="space-y-4 pt-6 border-t border-slate-200">
+                                <div class="flex justify-between items-end">
+                                    <label class="text-sm font-bold text-secondary uppercase tracking-wider">Velocidad HospyAries</label>
+                                    <span id="val-digital" class="text-2xl font-black text-secondary italic">20 seg</span>
+                                </div>
+                                <input type="range" id="in-digital" class="slider slider-app" min="5" max="60" step="5" value="20">
+                                <p class="text-xs text-slate-400 font-medium italic">Escaneo de ID y registro automático en nube.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PANEL DERECHO: Outputs -->
+                    <section class="w-full lg:w-7/12 flex flex-col bg-white">
+                        <div class="p-8 sm:p-12 pb-4">
+                            <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-8">Impacto Mensual (20 días hábiles)</h2>
+                            
+                            <div class="space-y-10 flex-grow">
+                                <!-- Barra Manual -->
+                                <div>
+                                    <div class="flex justify-between text-sm font-bold mb-3 uppercase tracking-tight">
+                                        <span class="text-accent italic">Burocracia Manual</span>
+                                        <span class="text-accent"><span id="out-horas-manual" class="text-2xl font-black">41</span> horas/mes</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-2xl h-8 overflow-hidden flex p-1">
+                                        <div id="bar-manual" class="bg-accent rounded-xl h-full transition-all duration-700 ease-out" style="width: 100%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Barra Digital -->
+                                <div>
+                                    <div class="flex justify-between text-sm font-bold mb-3 uppercase tracking-tight">
+                                        <span class="text-secondary italic">Flujo Digital</span>
+                                        <span class="text-secondary"><span id="out-horas-digital" class="text-2xl font-black">2.7</span> horas/mes</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-2xl h-8 overflow-hidden flex p-1">
+                                        <div id="bar-digital" class="bg-secondary rounded-xl h-full transition-all duration-700 ease-out" style="width: 8%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Metric -->
+                        <div class="bg-primary/5 p-8 sm:p-12 mt-auto text-center border-t border-primary/10">
+                            <p class="text-primary font-black uppercase tracking-widest text-xs mb-4">Tiempo que recuperarás cada mes</p>
+                            <div class="flex justify-center items-baseline space-x-3 text-primary mb-4">
+                                <span id="out-horas-ahorradas" class="text-6xl sm:text-8xl font-black number-transition italic">38</span>
+                                <span class="text-xl sm:text-2xl font-black uppercase tracking-tighter">Horas Libres</span>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium italic leading-relaxed max-w-md mx-auto">
+                                Equivale a casi <span id="out-dias-ahorrados" class="text-primary font-black">5.0 días laborables</span> dedicados exclusivamente al papeleo innecesario.
+                            </p>
+                        </div>
+
+                        <!-- Footer CTA -->
+                        <footer class="bg-dark p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <div class="text-center sm:text-left">
+                                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest">Deja de usar cuadernos.</p>
+                                <p class="text-white font-black text-xl italic tracking-tight">Digitaliza tu éxito.</p>
+                            </div>
+                            <a href="https://wa.me/50588271227" target="_blank" class="w-full sm:w-auto bg-primary hover:bg-white hover:text-dark text-white font-black py-4 px-10 rounded-2xl transition-all transform hover:-translate-y-1 shadow-xl shadow-primary/20 text-center uppercase tracking-widest text-xs">
+                                Solicitar Demo
+                            </a>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+
             <!-- Formulario de Contacto vía WhatsApp (NUEVO) -->
             <div class="mt-20 bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl border border-gray-100 animate-on-scroll">
                 <div class="text-center max-w-2xl mx-auto mb-10">
@@ -670,6 +778,52 @@
         });
 
         const lightbox = GLightbox({ selector: '.glightbox' });
+
+        // ==================== CALCULADORA DE FRICCIÓN LOGIC ====================
+        const inTrafico = document.getElementById('in-trafico');
+        const inManual = document.getElementById('in-manual');
+        const inDigital = document.getElementById('in-digital');
+        const valTrafico = document.getElementById('val-trafico');
+        const valManual = document.getElementById('val-manual');
+        const valDigital = document.getElementById('val-digital');
+        const outHorasManual = document.getElementById('out-horas-manual');
+        const outHorasDigital = document.getElementById('out-horas-digital');
+        const barManual = document.getElementById('bar-manual');
+        const barDigital = document.getElementById('bar-digital');
+        const outHorasAhorradas = document.getElementById('out-horas-ahorradas');
+        const outDiasAhorrados = document.getElementById('out-dias-ahorrados');
+
+        function calcularFriccion() {
+            const traficoDiario = parseInt(inTrafico.value);
+            const minutosManual = parseInt(inManual.value);
+            const segundosDigital = parseInt(inDigital.value);
+
+            valTrafico.textContent = traficoDiario;
+            valManual.textContent = minutosManual + " min";
+            valDigital.textContent = segundosDigital + " seg";
+
+            const diasHabilesMes = 20;
+            const horasManuales = (traficoDiario * minutosManual * diasHabilesMes) / 60;
+            const horasDigitales = (traficoDiario * (segundosDigital / 60) * diasHabilesMes) / 60;
+            const horasAhorradas = horasManuales - horasDigitales;
+            const diasLaborablesAhorrados = horasAhorradas / 8;
+
+            outHorasManual.textContent = Math.round(horasManuales);
+            outHorasDigital.textContent = horasDigitales.toFixed(1);
+            outHorasAhorradas.textContent = Math.round(horasAhorradas);
+            outDiasAhorrados.textContent = diasLaborablesAhorrados.toFixed(1) + (diasLaborablesAhorrados === 1 ? " día laborable" : " días laborables");
+
+            barManual.style.width = "100%";
+            const porcentajeDigital = (horasDigitales / horasManuales) * 100;
+            barDigital.style.width = `${Math.max(porcentajeDigital, 2)}%`;
+        }
+
+        if(inTrafico) {
+            inTrafico.addEventListener('input', calcularFriccion);
+            inManual.addEventListener('input', calcularFriccion);
+            inDigital.addEventListener('input', calcularFriccion);
+            calcularFriccion();
+        }
 
         // ==================== CHATBOT LOGIC PRO ====================
         let isChatOpen = false;
